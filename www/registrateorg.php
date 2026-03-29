@@ -2,6 +2,7 @@
 session_start();
 require_once 'dbcall.php';
 $error="";
+$oznameni="";
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registr'])){
     if((empty($_POST["name"]))||(empty($_POST["organization_password"]))||(empty($_POST["check_password"]))||(empty($_POST["email"]))){/*echo'<div>chybejici udaje1</div>';*/$error="některá políčka jsou prázdná";}
 else
@@ -32,6 +33,7 @@ else
         "organization_password"=>$organization_password,
         "status"=>"nerozhodnuto"
     ]);
+    $oznameni="vaše žádost o schválení byla poslána";
     /*$usersql="SELECT organization_id FROM organization where organization_email=:email";
     $stmtuser=$userpdo->prepare($sql);
     $stmtuser->execute(["email"=>$email]);
@@ -42,9 +44,14 @@ else
     $_SESSION['role']="organizace";
     header("Location: homeorg.php");*/
 }
-$error="Organizace s tímto emailem už existuje";
+else
+    {
+$error="Organizace s tímto emailem už existuje";}
 }
+else
+    {
 $error="Heslo nebo email jsou ve špatném formátu";
+    }
 }
 }
 ?>
@@ -63,6 +70,9 @@ $error="Heslo nebo email jsou ve špatném formátu";
     <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-black">Registrace organizace</h2>
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
   <?php echo $error ?>
+</div>
+<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+  <?php echo $oznameni ?>
 </div>
   </div>
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

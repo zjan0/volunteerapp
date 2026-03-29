@@ -23,6 +23,7 @@ else
             $_SESSION['user']=$name;
             $_SESSION['role']="organizace";
             header("Location: homeorg.php");
+            exit;
         }
         else{/*echo'<div>spatne udaje</div>';*/$error="špatný email nebo heslo";}
     }

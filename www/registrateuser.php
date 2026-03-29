@@ -55,10 +55,16 @@ else
     $_SESSION['user']=$name;
     $_SESSION['role']="dobrovolník";
     header("Location: home.php");
+    exit;
 }
-$error="Uživatel s tímto emailem už existuje";
+else
+    {
+$error="Uživatel s tímto emailem už existuje";}
 }
+else
+    {
 $error="Heslo nebo email jsou ve špatném formátu";
+    }
 }
 }
 ?>

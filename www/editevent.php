@@ -2,8 +2,8 @@
 session_start();
 $session=$_SESSION['id'];
 require_once 'dbcall.php';
-if($_SESSION['role']=="dobrovolník"){header("Location: home.php");}
-else{header("Location: index.php");}
+if($_SESSION['role']=="dobrovolník"){header("Location: home.php");exit;}
+else{header("Location: index.php");exit;}
 $error="";
 if($_SERVER['REQUEST_METHOD']=== 'POST')
 {
@@ -81,8 +81,9 @@ $stmta->execute([
     else{header("Location: aevent.php");exit();}
 }
 else
+    {
     //echo'<div>adressa<div>';
-$error="adressa neexistuje";
+$error="adressa neexistuje";}
 }}}}
 ?>
 <!DOCTYPE html>

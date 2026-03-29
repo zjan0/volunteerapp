@@ -2,9 +2,9 @@
 $akce="";
 session_start();
 require_once 'dbcall.php';
-if($_SESSION['role']=="organizace"){header("Location: homeorg.php");}
-elseif($_SESSION['role']=="admin"){header("Location: admin.php");}
-else{header("Location: index.php");}
+if($_SESSION['role']=="organizace"){header("Location: homeorg.php");exit;}
+elseif($_SESSION['role']=="admin"){header("Location: admin.php");exit;}
+else{header("Location: index.php");exit;}
 $myuser=$_SESSION['id'];
 $sql="SELECT * from volunteer where volunteer_id=$myuser";
 $stmt=$userpdo->prepare($sql);

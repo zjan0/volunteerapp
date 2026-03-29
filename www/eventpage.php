@@ -1,9 +1,9 @@
 <?php
 session_start();
 require_once 'dbcall.php';
-if($_SESSION['role']=="organizace"){header("Location: homeorg.php");}
-elseif($_SESSION['role']=="admin"){header("Location: admin.php");}
-else{header("Location: index.php");}
+if($_SESSION['role']=="organizace"){header("Location: homeorg.php");exit;}
+elseif($_SESSION['role']=="admin"){header("Location: admin.php");exit;}
+else{header("Location: index.php");exit;}
 /*$session=$_SESSION['user'];
 $user="SELECT volunteer_id from volunteer where volunteer_name=:volunteer_name";
 $stmtuser=$userpdo->prepare($user);
@@ -59,6 +59,7 @@ $stmta->execute([
         "event_key"=>$id
     ]);
     header("Location: eventpage.php?event=".$id);
+    exit;
   }
 else if($existusers&&($akce=="odebrani"))
 {
@@ -66,6 +67,7 @@ $sqlab="DELETE FROM volunteer_event where volunteer_key=$myuser and event_key=$i
 $stmtab=$userpdo->prepare($sqlab);
 $stmtab->execute([]);
 header("Location: eventpage.php?event=".$id);
+exit;
 }
 ?>
 <!DOCTYPE html>

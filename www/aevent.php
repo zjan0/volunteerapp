@@ -1,14 +1,15 @@
 <?php
 session_start();
 require_once 'dbcall.php';
-if($_SESSION['role']=="dobrovolník"){header("Location: home.php");}
-elseif($_SESSION['role']=="organizace"){header("Location: homeorg.php");}
-else{header("Location: index.php");}
+if($_SESSION['role']=="dobrovolník"){header("Location: home.php");exit;}
+elseif($_SESSION['role']=="organizace"){header("Location: homeorg.php");exit;}
+else{header("Location: index.php");exit;}
 if(isset($_GET['logoff']))
 {
     session_destroy();
     session_start();
     header("Location: index.php");
+    exit;
 }
 $session=$_SESSION['id'];
 if(($_SERVER['REQUEST_METHOD']=== 'POST')&&isset($_POST['odebrani']))

@@ -2,9 +2,9 @@
 session_start();
 $session=$_SESSION['id'];
 require_once 'dbcall.php';
-if($_SESSION['role']=="dobrovolník"){header("Location: home.php");}
-elseif($_SESSION['role']=="admin"){header("Location: admin.php");}
-else{header("Location: index.php");}
+if($_SESSION['role']=="dobrovolník"){header("Location: home.php");exit;}
+elseif($_SESSION['role']=="admin"){header("Location: admin.php");exit;}
+else{header("Location: index.php");exit;}
 $error="";
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])){
     if((empty($_POST["name"]))||(empty($_POST["text"]))||(empty($_POST["time"]))||(empty($_POST["date"]))||(empty($_POST["count"]))||(empty($_POST["anumber"]))||(empty($_POST["aname"]))||(empty($_POST["ctown"]))){/*echo'<div>chybejici udaje1</div>';*/$error="některá políčka jsou prázdná";}
@@ -67,9 +67,9 @@ $stmta->execute([
     header("Location: homeorg.php");
     exit();
 }
-else
+else{
     /*echo'<div>adressa<div>';*/
-$error="adressa neexistuje";
+$error="adressa neexistuje";}
 }}}
 ?>
 <!DOCTYPE html>

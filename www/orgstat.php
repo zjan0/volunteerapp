@@ -2,9 +2,9 @@
 $akce="";
 session_start();
 require_once 'dbcall.php';
-if($_SESSION['role']=="dobrovolník"){header("Location: home.php");}
-elseif($_SESSION['role']=="admin"){header("Location: admin.php");}
-else{header("Location: index.php");}
+if($_SESSION['role']=="dobrovolník"){header("Location: home.php");exit;}
+elseif($_SESSION['role']=="admin"){header("Location: admin.php");exit;}
+else{header("Location: index.php");exit;}
 $error="";
 $myuser=$_SESSION['id'];
 $sql="SELECT *  from organization where organization_id=$myuser";
