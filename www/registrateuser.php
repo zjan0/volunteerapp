@@ -1,7 +1,38 @@
 <?php
-session_start();
-require_once 'dbcall.php';
+/*ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
+try {
+    $userpdo = new PDO("mysql:host=localhost;dbname=c303dobro;", "c303db", "6Kv!QZbx8gS");
+    $userpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    echo "Connected!";
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}*/
+try {
+    $userpdo = new PDO("mysql:host=localhost;dbname=c303dobro;", "c303db", "6Kv!QZbx8gS");
+    $userpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //echo "Connected!";
+} catch (PDOException $e) {
+    //echo "Error: " . $e->getMessage();
+}
+session_start();
+//require_once 'dbcall.php';
+//ini_set('display_errors', 1);
+/*error_reporting(E_ALL);
+require_once 'dbcall.php';
+try {
+    $userpdo = new PDO("mysql:host=localhost;dbname=dbname;", "user", "password");
+    $userpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    echo "Connected!";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 try {
     $stmta = $userpdo->prepare("INSERT INTO volunteer(volunteer_name, volunteer_email, volunteer_password) VALUES(:volunteer_name,:volunteer_email,:volunteer_password)");
     $stmta->execute([
@@ -12,7 +43,7 @@ try {
     echo "Insert successful";
 } catch(PDOException $e) {
     echo "Insert failed: " . $e->getMessage();
-}
+}*/
 
 
 

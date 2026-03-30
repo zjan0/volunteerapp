@@ -1,6 +1,14 @@
 <?php
+try {
+    $userpdo = new PDO("mysql:host=localhost;dbname=c303dobro;", "c303db", "6Kv!QZbx8gS");
+    $userpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //echo "Connected!";
+} catch (PDOException $e) {
+    //echo "Error: " . $e->getMessage();
+}
 session_start();
-require_once 'dbcall.php';
+//require_once 'dbcall.php';
 $error="";
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prihlaseni'])){
     if((empty($_POST["email"]))||(empty($_POST["organization_password"]))){/*echo'<div>chybejici udaje2</div>';*/$error="některá políčka jsou prázdná";}

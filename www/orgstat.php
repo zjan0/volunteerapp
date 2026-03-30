@@ -1,10 +1,19 @@
 <?php
+try {
+    $userpdo = new PDO("mysql:host=localhost;dbname=c303dobro;", "c303db", "6Kv!QZbx8gS");
+    $userpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //echo "Connected!";
+} catch (PDOException $e) {
+    //echo "Error: " . $e->getMessage();
+}
 $akce="";
+$error="";
 session_start();
-require_once 'dbcall.php';
+//require_once 'dbcall.php';
 if($_SESSION['role']=="dobrovolník"){header("Location: home.php");exit;}
 elseif($_SESSION['role']=="admin"){header("Location: admin.php");exit;}
-else{header("Location: index.php");exit;}
+elseif($_SESSION['role']!="organizace"){header("Location: index.php");exit;}
 $error="";
 $myuser=$_SESSION['id'];
 $sql="SELECT *  from organization where organization_id=$myuser";
@@ -23,6 +32,7 @@ if(isset($_POST['uložit_jméno'])){
   $newname="UPDATE organization set organization_name=:organization_name where organization_id=$myuser";
   $stmt=$userpdo->prepare($newname);
   $stmt->execute(["organization_name"=>$name]);
+  $_SESSION['user']=$name;
   }
   else
     {
@@ -156,7 +166,7 @@ if(!empty($_POST["password"]))
         <input type="text"name="username" value="<?= $organization['organization_name'] ?>" id="username" placeholder="organizace sro" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-black-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
         </div></div>
             <button
-                name="ulozit_jméno"
+                name="uložit_jméno"
                 type="submit"
                 class="w-full py-2.5 rounded-lg bg-green-600 hover:bg-green-500
                        text-white font-semibold transition shadow-sm hover:shadow-md">
@@ -175,7 +185,7 @@ if(!empty($_POST["password"]))
         <input type="text"name="password" value="" id="password" placeholder="Heslo123" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-black-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
         </div></div>
             <button
-                name="ulozit_jméno"
+                name="uložit_heslo"
                 type="submit"
                 class="w-full py-2.5 rounded-lg bg-green-600 hover:bg-green-500
                        text-white font-semibold transition shadow-sm hover:shadow-md">

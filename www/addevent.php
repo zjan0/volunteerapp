@@ -1,10 +1,21 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+try {
+    $userpdo = new PDO("mysql:host=localhost;dbname=c303dobro;", "c303db", "6Kv!QZbx8gS");
+    $userpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //echo "Connected!";
+} catch (PDOException $e) {
+    //echo "Error: " . $e->getMessage();
+}
 session_start();
 $session=$_SESSION['id'];
-require_once 'dbcall.php';
+//require_once 'dbcall.php';
 if($_SESSION['role']=="dobrovolník"){header("Location: home.php");exit;}
 elseif($_SESSION['role']=="admin"){header("Location: admin.php");exit;}
-else{header("Location: index.php");exit;}
+elseif($_SESSION['role']!="organizace"){header("Location: index.php");exit;}
 $error="";
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])){
     if((empty($_POST["name"]))||(empty($_POST["text"]))||(empty($_POST["time"]))||(empty($_POST["date"]))||(empty($_POST["count"]))||(empty($_POST["anumber"]))||(empty($_POST["aname"]))||(empty($_POST["ctown"]))){/*echo'<div>chybejici udaje1</div>';*/$error="některá políčka jsou prázdná";}
@@ -19,7 +30,11 @@ $anumber=$_POST["anumber"];
 $aname=$_POST["aname"];
 $ccity=$_POST["ctown"];
 $pravidelnost;
-if($_POST["type"]==true){$pravidelnost=true;}else{$pravidelnost=false;}
+if (isset($_POST["type"]) && $_POST["type"] == "true") {
+    $pravidelnost = 1; 
+} else {
+    $pravidelnost = 0; 
+}
 if ($date < date("Y-m-d")) {
     /*echo'<div>minulost</div>';*/
     $error="datum je v minulosti";

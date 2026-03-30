@@ -1,9 +1,17 @@
 <?php
+try {
+    $userpdo = new PDO("mysql:host=localhost;dbname=c303dobro;", "c303db", "6Kv!QZbx8gS");
+    $userpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //echo "Connected!";
+} catch (PDOException $e) {
+    //echo "Error: " . $e->getMessage();
+}
 session_start();
-require_once 'dbcall.php';
+//require_once 'dbcall.php';
 if($_SESSION['role']=="organizace"){header("Location: homeorg.php");exit;}
 elseif($_SESSION['role']=="admin"){header("Location: admin.php");exit;}
-else{header("Location: index.php");exit;}
+elseif($_SESSION['role']!="dobrovolník"){header("Location: index.php");exit;}
 if(isset($_GET['logoff']))
 {
     session_destroy();

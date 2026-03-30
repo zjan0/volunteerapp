@@ -1,9 +1,17 @@
 <?php
+try {
+    $userpdo = new PDO("mysql:host=localhost;dbname=c303dobro;", "c303db", "6Kv!QZbx8gS");
+    $userpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //echo "Connected!";
+} catch (PDOException $e) {
+    //echo "Error: " . $e->getMessage();
+}
 session_start();
 $session=$_SESSION['id'];
-require_once 'dbcall.php';
+//require_once 'dbcall.php';
 if($_SESSION['role']=="dobrovolník"){header("Location: home.php");exit;}
-else{header("Location: index.php");exit;}
+elseif(($_SESSION['role']!="organizace")&&($_SESSION['role']!="admin")){header("Location: index.php");exit;}
 $error="";
 if($_SERVER['REQUEST_METHOD']=== 'POST')
 {
@@ -36,7 +44,7 @@ $vcount="SELECT * from volunteer_event where event_key=$id";
 $stmtcount=$userpdo->prepare($vcount);
 $stmtcount->execute([]);
 $vcount = $stmtcount->fetchall();
-if($vcount>$count)
+if(count($vcount)>$count)
     {$error="počet dobrovolníků je větší než maximum";}
 else
     {
