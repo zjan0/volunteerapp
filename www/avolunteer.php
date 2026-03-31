@@ -28,7 +28,7 @@ $events=$stmt->fetchAll();
 }
 if(($_SERVER['REQUEST_METHOD']=== 'POST')&&isset($_POST['zamitnuti']))
 {
-  $email = $_POST['id_email'];
+  $email = $_POST['volunteer_id'];
   $sqlvo="DELETE FROM volunteer_event where volunteer_key=:id";
   $stmtvo=$userpdo->prepare($sqlvo);
   $stmtvo->execute(["id"=>$email]);
@@ -136,7 +136,7 @@ if(($_SERVER['REQUEST_METHOD']=== 'POST')&&isset($_POST['zamitnuti']))
                     </p>
                     </p>
         <form action="avolunteer.php" method="post">
-          <input type="hidden" name="organization_email" value="<?= $event['volunteer_id'] ?>" />
+          <input type="hidden" name="volunteer_id" value="<?= $event['volunteer_id'] ?>" />
             <button
                 name="zamitnuti"
                 type="submit"

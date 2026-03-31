@@ -70,12 +70,12 @@ else
         <div>
         <label for="name"class="block text-sm/6 font-medium text-black-100">email admina</label>
         <div class="mt-2">
-        <input type="text"name="email" value="" id="email" placeholder="uzivatel" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-black-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
+        <input type="text"name="email" value="" id="email" placeholder="admin@email.com" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-black-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
         </div></div>
         <div>
         <label for="volunteer_password"class="block text-sm/6 font-medium text-black-100">heslo</label>
         <div class="mt-2">
-        <input type="text"name="volunteer_password" value="" id="volunteer_password" placeholder="uzivatel" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-black-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
+        <input type="text"name="volunteer_password" value="" id="volunteer_password" placeholder="Heslo123" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-black-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
         </div></div>
         <div>
             <button name="prihlaseni" type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Prihlasit</button>

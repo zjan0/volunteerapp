@@ -32,8 +32,8 @@ if(($_SERVER['REQUEST_METHOD']=== 'POST')&&isset($_POST['odebrani']))
     $sqlvoa="DELETE FROM event where event_id=$id";
     $stmtvoa=$userpdo->prepare($sqlvoa);
     $stmtvoa->execute([]);
-    header("Location: homeorg.php");
-    exit();
+    //header("Location: homeorg.php");
+    //exit();
 }
 /*$user="SELECT organization_id from organization where _name=:volunteer_name";
 $stmtuser=$userpdo->prepare($user);
@@ -47,7 +47,7 @@ $existusers=array();
 $existusersa = $stmty->fetchAll();
 foreach($existusersa as $evnt)
 {
-  $events_id=$evnt["event_key"];
+  $events_id=$evnt["event_id"];
   array_push($existusers,$events_id);
   //array_push($streeta,'"' . $lat . ', ' .$lng .'"');
 }
@@ -166,7 +166,7 @@ foreach($existusersa as $evnt)
         </gmp-map>
     <div class="max-w-7xl mx-auto px-6 py-10">
     
-    <h1 class="text-3xl font-bold text-black mb-8">Vlatní události</h1>
+    <h1 class="text-3xl font-bold text-black mb-8">Všechny události</h1>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
